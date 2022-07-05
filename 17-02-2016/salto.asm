@@ -11,10 +11,15 @@ _salto:
     pushad
 
     mov EAX, [EBP + a]  ; v
-    mov ESI, [EBP + n]  ; n
-    sub ESI, 2          ; ignore last 2 elements
+    mov EDI, [EBP + n]  ; n, i decreasing
+    sub EDI, 2
     xor DX, DX          ; cont
-    xor EDI, EDI        ; i
+    
+    mov EBX, [EAX + EDI*2]  ; v[n - 1]
+    cmp EBX, 0              ; positive?
+    jge loop                ; true: impossible to check -> skip
+    jmp negative            ; false -> check v[n-1] 
+
 loop:
     cmp EDI, ESI
     jge end
@@ -64,7 +69,7 @@ g4:
 restorePosG4:
     sub EDI, 2
 next:
-    inc EDI
+    dec EDI
     jmp loop
 end:
     mov EAX, [EBP + ks]
