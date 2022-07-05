@@ -1,0 +1,12 @@
+# exlude all, apart from directories
+*
+!/**/
+
+# exclude files without extension (binaries)
+!*.*
+
+# ignore object files
+*.o
+
+# don't ignore utils.o
+!utils.o
