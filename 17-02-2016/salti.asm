@@ -13,7 +13,7 @@ section .text
 _start:
     add ESP, 4
     push a
-    push n
+    push dword n
     push ks
     call _salto
     printw word [ks]
