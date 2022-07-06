@@ -17,12 +17,12 @@ _salto:
     
     mov EBX, [EAX + EDI*2]  ; v[n - 1]
     cmp EBX, 0              ; positive?
-    jge loop                ; true: impossible to check -> skip
+    jge next                ; true: impossible to check -> skip
     jmp negative            ; false -> check v[n-1] 
 
 loop:
-    cmp EDI, ESI
-    jge end
+    cmp EDI, 0
+    jl end
     
     mov EBX, [EAX + EDI*2]  ; v[i]
     cmp EBX, 0              ; positive?
@@ -42,7 +42,7 @@ negative:
     neg EBX                 ; | ... |
 g2:
     cmp EBX, 2              ; | ... | > 2
-    jl restorePosG2
+    jle restorePosG2
     inc DX
 
 restorePosG2:
@@ -63,7 +63,7 @@ positive:
     neg EBX                 ; | ... |
 g4:
     cmp EBX, 4              ; | ... | > 4
-    jl restorePosG4
+    jle restorePosG4
     inc DX
     
 restorePosG4:
@@ -78,3 +78,4 @@ end:
     popad
     mov ESP, EBP
     pop EBP
+    ret 12
