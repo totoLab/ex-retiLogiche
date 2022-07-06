@@ -51,3 +51,4 @@ end:
     popad
     mov ESP, EBP
     pop EBP
+    ret 12
